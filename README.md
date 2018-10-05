@@ -1,9 +1,11 @@
 # docker
-My docker configurations and cheatsheet.
+My docker configurations, tipps and cheatsheet.
 
 > Written with ***Typora***: https://www.typora.io/
 >
 > More or less a partial summary of the [official docker docs](https://docs.docker.com/)
+>
+> If you don't have a docker account, sign up for one at [hub.docker.com](https://hub.docker.com/).
 
 
 
@@ -41,13 +43,16 @@ My docker configurations and cheatsheet.
 
 * `docker ps` 
   List running containers
-
 * `docker container ls` 
   List running containers
 * `docker container ls --all` 
   List all Docker containers
 * `docker container ls -aq` 
   List all Docker containers in quiet mode
+* `docker container rm $(docker container ls -a -q)`
+  Remove all containers
+* `docker container rm <hash>`
+  Remove specified container from your machine
 
 
 
@@ -63,19 +68,47 @@ My docker configurations and cheatsheet.
 * `CTRL + C`
 
   * Stop app if running
-  * On Windows systems: first type `CTRL+C` to get the prompt back, then type  `docker container ls`  to list the running containers, followed by `docker container stop <Container NAME or ID>`  to stop the container
+  * On Windows systems: first type `CTRL + C` to get the prompt back, then type  `docker container ls`  to list the running containers, followed by `docker container stop <hash>`  to stop the container
 
 * `docker run -d -p 4000:80 example` 
 
   Run app in the background (detached mode). You get long container ID returned.
 
-* `docker container stop` + containerID
+* `docker container stop <container id>`
   Stop container with given container ID
+
+* `docker container kill <hash>`
+  Force shutdown of the specified container
+
+
+
+* `docker image ls -a` 
+  List all image on this machine
+* `docker image rm <image id>` 
+  Remove specified image from this machine
+
+* `docker image rm $(docker image ls -a -q)` 
+  Remove all images from this machine
+
+
+
+* `docker login` 
+  Log in to the Docker public registry on your local machine
+* `docker tag <image name> <username>/<repository name>:<tag>` 
+  Associate a local image with a repository on a registry (collection of repositories). Uploads the image to that repository.
+* `docker push <username>/<repository name>:<tag>` 
+  Upload tagged image to the repository. Once complete, the results of this upload are publicly available. If you log in to [Docker Hub](https://hub.docker.com/), you see the new image there, with its pull command (or https://cloud.docker.com/).
+* `docker run -p 4000:80 <username>/<repository name>:<tag>` 
+  Run image from a registry.
+
+
+
+
 
 ## Glossary
 
 * **Dockerfile**: *A file that defines what goes on in the environment inside your container*. Access to resources like networking interfaces and disk drives is virtualized inside this environment, which is isolated from the rest of your system, so you need to map ports to the outside world, and be specific about what files you want to “copy in” to that environment. However, after doing that, you can expect that the build of your app defined in this `Dockerfile` behaves exactly the same wherever it runs.
-* 
+* **Registry**: *collection of repositories, and a repository is a collection of images*—sort of like a GitHub repository, except the code is already built. An account on a registry can create many repositories. The `docker` CLI uses Docker’s public registry by default.
 
 ## Tipps
 
