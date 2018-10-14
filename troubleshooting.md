@@ -39,3 +39,13 @@ sudo service docker restart
 ```
 
 Once fixed, retry to run the `build` command.
+
+
+
+## Mac
+
+
+
+### Can't connect to my container with docker IP
+
+* https://docs.docker.com/docker-for-mac/networking/#known-limitations-use-cases-and-workarounds
