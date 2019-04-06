@@ -217,7 +217,7 @@ docker-machine rm $(docker-machine ls -q)
   Remove the swarm worker on given virtual machine
 
 * `eval $(docker-machine env -u)`
-  Unsert environment variables (Mac)
+  Unset environment variables (Mac)
 * `docker-machine stop $(docker-machine ls -q)`
   Stop all running VMs
 
